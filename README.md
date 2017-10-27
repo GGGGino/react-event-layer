@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img width="400" src="react-event-layer/src/images/icon_256.png" alt="react-event-layer">
+	<img width="256" src="https://raw.githubusercontent.com/GGGGino/react-event-layer/master/src/images/icon_256.png" alt="react-event-layer">
 </h1>
 
 # React-event-layer
