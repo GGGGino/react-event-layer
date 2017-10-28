@@ -1,6 +1,6 @@
-<h1 align="center">
+<h3 align="center">
 	<img width="256" src="https://raw.githubusercontent.com/GGGGino/react-event-layer/master/src/images/icon_256.png" alt="react-event-layer">
-</h1>
+</h3>
 
 # React-event-layer
 > Show a layer on div event
