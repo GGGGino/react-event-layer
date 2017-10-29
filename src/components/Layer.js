@@ -6,33 +6,6 @@ import PropTypes from 'prop-types';
 class Layer extends React.Component {
   constructor(props) {
     super(props);
-
-    const first = this.props.z === 0;
-
-    this.state = {
-      open: first
-    };
-
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
-  }
-
-  open() {
-    this.setState({
-      open: true
-    })
-  }
-
-  close() {
-    this.setState({
-      open: false
-    })
-  }
-
-  onMouseEnter(e) {
-  }
-
-  onMouseLeave(e) {
   }
 
   render() {
@@ -49,9 +22,10 @@ Layer.defaultProps = {
 };
 
 Layer.propTypes = {
-  x: PropTypes.number,
-  y: PropTypes.number,
-  z: PropTypes.number
+  z: PropTypes.number.isRequired,
+  starterX: PropTypes.number,
+  selector: PropTypes.string,
+  event: PropTypes.string
 };
 
 export default Layer;

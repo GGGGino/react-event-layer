@@ -3,7 +3,6 @@ import 'styles/App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import WrapperLayer from './WrapperLayer';
 import { Motion, spring } from 'react-motion';
 
 class WrapperLayers extends React.Component {
@@ -26,10 +25,7 @@ class WrapperLayers extends React.Component {
       let domEl = ReactDOM.findDOMNode(this.layers[key]),
         domQueried = this.layers[key].props.selector ? domEl.querySelector(this.layers[key].props.selector) : domEl;
 
-      //console.log(domQueried, this.layers[key].props.selector);
-      domQueried.addEventListener('click', this.eventOnLayer.bind(this, key, this.layers[key]));
-
-      //console.log(key, this.layers[key], ReactDOM.findDOMNode(this.layers[key]));
+      domQueried.addEventListener(this.layers[key].props.event, this.eventOnLayer.bind(this, key, this.layers[key]));
     }
   }
 
@@ -50,7 +46,6 @@ class WrapperLayers extends React.Component {
               childProps
             ),
             customStyle = this.controlEnterMode(i) ? {x: spring(0)} : {x: spring(item.props.starterX)};
-          // @todo: se voglio che i layer si impilino basta che usi i <= this.state.activeLayer
 
           return (
             <Motion key={item.props.z} defaultStyle={{x: item.props.starterX}} style={customStyle}>
@@ -76,22 +71,20 @@ class WrapperLayers extends React.Component {
     return Object.keys(this.layers).length;
   }
 
-  eventOnLayer(ref, layer) {
-    const intLayer = parseInt(ref.replace("layer", "")),
+  eventOnLayer(ref) {
+    const intLayer = parseInt(ref.replace('layer', '')),
       nextLayer = intLayer + 1;
-
-    console.log(intLayer, this.countLayer());
 
     if( this.countLayer() > nextLayer )
       this.setState({activeLayer: nextLayer});
   }
 
   controlEnterMode(row) {
-    if( this.props.enterMode === "replace" ) {
+    if( this.props.enterMode === 'replace' ) {
       return row === this.state.activeLayer;
     }
 
-    if( this.props.enterMode === "push" ) {
+    if( this.props.enterMode === 'push' ) {
       return row <= this.state.activeLayer;
     }
   }
@@ -109,13 +102,22 @@ class WrapperLayers extends React.Component {
 }
 
 WrapperLayers.defaultProps = {
-  enterMode: "replace"
+  enterMode: 'replace'
 };
 
 WrapperLayers.propTypes = {
+  /**
+   * int larghezza container
+   */
   width: PropTypes.number,
+  /**
+   * int altezza container
+   */
   height: PropTypes.number,
-  enterMode: PropTypes.string
+  /**
+   * string push|replace Se lo slider deve andare sopra push altrimenti se deve sostituire il layer replace
+   */
+  enterMode: PropTypes.oneOf(['push', 'replace'])
 };
 
 export default WrapperLayers;
