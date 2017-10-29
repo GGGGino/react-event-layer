@@ -1,6 +1,7 @@
 import React from 'react';
 //import Layer from './Main';
 import WrapperLayers from './WrapperLayers';
+import WrapperNestedLayers from './WrapperNestedLayers';
 import Layer from './Layer';
 import icon from '../images/icon.png';
 
@@ -30,9 +31,11 @@ class AppComponent extends React.Component {
         <img src={icon} alt="Yeoman Generator" />
         <div className="notice">
           <WrapperLayers>
-            <Layer z={0} starterX={0}>{baseLayer}</Layer>
-            <Layer z={1} starterX={300}>{layer1}</Layer>
+            <Layer z={0} starterX={0} selector="h3" event="onMouseEnter">{baseLayer}</Layer>
+            <Layer z={1} starterX={200} event="onClick">{layer1}</Layer>
+            <Layer z={2} starterX={150} event="onClick">{layer1}</Layer>
           </WrapperLayers>
+          <br/>
         </div>
       </div>
     );

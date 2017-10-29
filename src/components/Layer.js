@@ -30,11 +30,9 @@ class Layer extends React.Component {
   }
 
   onMouseEnter(e) {
-    console.log(e);
   }
 
   onMouseLeave(e) {
-    console.log(e);
   }
 
   render() {

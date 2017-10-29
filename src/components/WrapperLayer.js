@@ -13,7 +13,7 @@ class WrapperLayer extends React.Component {
       <div className="wrapperLayer">
         <div className="demo0-block" style={{
           WebkitTransform: `translate3d(${this.props.x}px, 0, 0)`,
-          transform: `translate3d(${this.props.x}px, 0, 0)`,
+          transform: `translate3d(${this.props.x}px, 0, 0)`
         }} >{this.props.children}</div>
       </div>
     );
