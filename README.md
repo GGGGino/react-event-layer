@@ -5,36 +5,70 @@
 # React-event-layer
 > Show a layer when a event il fired on a component
 
-## Getting Started
+### Installing
 
 ```
 npm install react-event-layer
 ```
-### Prerequisites
 
-What things you need to install the software and how to install them
+## Getting Started
 
+```javascript
+import {
+  WrapperLayers,
+  Layer
+} from 'react-event-layer';
+
+
+render() {
+  return (
+    <div className="index">
+      <img src={icon} alt="Yeoman Generator" />
+      <div className="notice">
+        <WrapperLayers width={300} height={250} enterMode="push" >
+          <Layer z={0} starterX={0} selector="h3" event="mouseenter">{baseLayer}</Layer>
+          <Layer z={1} starterX={300} event="dblclick">
+            <div className="backgroundedRedBox">
+              <h3>hoverable</h3>
+            </div>
+          </Layer>
+          <Layer z={2} starterX={300} event="click">
+            <div className="backgroundedGreenBox">
+              <h3>layer 1</h3>
+            </div>
+          </Layer>
+          <Layer z={3} starterX={300} event="click">
+            <div className="backgroundedGreenBox">
+              <h3>layer2</h3>
+            </div>
+          </Layer>
+          <Layer z={4} starterX={300} event="click">
+            <div className="try">
+              <h3>Anything</h3>
+            </div>
+          </Layer>
+        </WrapperLayers>
+        <br/>
+      </div>
+    </div>
+  );
+}
 ```
-Give examples
-```
 
-### Installing
+### Configuration
 
-A step by step series of examples that tell you have to get a development env running
+> WrapperLayers
 
-Say what the step will be
+* width={300}
+* height={250}
+* enterMode="push"
 
-```
-Give the example
-```
+> Layer
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+* z={0}
+* starterX={0}
+* selector="h3"
+* event="mouseenter"
 
 ## Running the tests
 
@@ -63,6 +97,7 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [Icon author](https://www.flaticon.com/authors/roundicons)
+* [React-Motion](https://github.com/chenglou/react-motion)
 
 ## Contributing
 
