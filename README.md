@@ -5,6 +5,8 @@
 # React-event-layer
 > Show a layer when a event il fired on a component
 
+[![Build Status](https://travis-ci.org/GGGGino/react-event-layer.svg?branch=master)](https://travis-ci.org/GGGGino/react-event-layer)
+
 ### Installing
 
 ```
