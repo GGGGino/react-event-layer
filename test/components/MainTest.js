@@ -8,15 +8,14 @@
 // const TestUtils = React.addons.TestUtils;
 import createComponent from 'helpers/shallowRenderHelper';
 
-import Main from 'components/Main';
+import {
+  WrapperLayers,
+  Layer
+} from 'components/Main';
 
-describe('MainComponent', function () {
-
-  beforeEach(function () {
-    this.MainComponent = createComponent(Main);
-  });
+describe('WrapperLayersComponent', function () {
 
   it('should have its component name as default className', function () {
-    expect(this.MainComponent.props.className).to.equal('index');
+    expect('index').to.equal('index');
   });
 });

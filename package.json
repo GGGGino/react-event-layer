@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "description": "React event layer",
-  "main": "",
+  "main": "dist/assets/app.js",
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
