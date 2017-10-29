@@ -38,13 +38,7 @@ class Layer extends React.Component {
   render() {
     return (
       <div
-        className="layer"
-        style={{
-          WebkitTransform: `translate3d(${this.props.x}px, 0, 0)`,
-          transform: `translate3d(${this.props.x}px, 0, 0)`,
-        }}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave} >
+        className="layer" >
         {this.props.children}
       </div>
     );

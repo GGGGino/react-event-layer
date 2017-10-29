@@ -10,6 +10,31 @@ class AppComponent extends React.Component {
     super(props);
   }
 
+  render() {
+    const baseLayer = this.getBaseLayer(),
+      layer1 = this.getLayer1(),
+      layer2 = this.getLayer2();
+
+    /*
+      width - larghezza container
+      height - altezza container
+      enterMode - push|replace Se lo slider deve andare sopra push altrimenti se deve sostituire il layer replace
+     */
+    return (
+      <div className="index">
+        <img src={icon} alt="Yeoman Generator" />
+        <div className="notice">
+          <WrapperLayers width={300} height={250} enterMode="push" >
+            <Layer z={0} starterX={0} selector="h3" event="onMouseEnter">{baseLayer}</Layer>
+            <Layer z={1} starterX={300} event="onClick">{layer1}</Layer>
+            <Layer z={2} starterX={300} event="onClick">{layer2}</Layer>
+          </WrapperLayers>
+          <br/>
+        </div>
+      </div>
+    );
+  }
+
   getBaseLayer() {
     return <div className="backgroundedRedBox">
       <h3>hoverable</h3>
@@ -22,23 +47,10 @@ class AppComponent extends React.Component {
     </div>
   }
 
-  render() {
-    const baseLayer = this.getBaseLayer(),
-      layer1 = this.getLayer1();
-
-    return (
-      <div className="index">
-        <img src={icon} alt="Yeoman Generator" />
-        <div className="notice">
-          <WrapperLayers>
-            <Layer z={0} starterX={0} selector="h3" event="onMouseEnter">{baseLayer}</Layer>
-            <Layer z={1} starterX={200} event="onClick">{layer1}</Layer>
-            <Layer z={2} starterX={150} event="onClick">{layer1}</Layer>
-          </WrapperLayers>
-          <br/>
-        </div>
-      </div>
-    );
+  getLayer2() {
+    return <div className="backgroundedRedBox">
+      <h2>layer 2</h2>
+    </div>
   }
 }
 
