@@ -1,4 +1,5 @@
 {
+  "name": "react-event-layer",
   "version": "2.0.0",
   "description": "React event layer",
   "main": "dist/assets/app.js",
