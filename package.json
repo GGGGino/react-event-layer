@@ -19,7 +19,7 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false"
   },
   "repository": "",
-  "keywords": [],
+  "keywords": ["layer", "event", "react"],
   "author": "David Ginanni",
   "devDependencies": {
     "babel-core": "^6.0.0",

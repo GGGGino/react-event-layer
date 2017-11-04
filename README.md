@@ -1,7 +1,7 @@
 ![](https://github.com/GGGGino/react-event-layer/blob/master/src/images/icon_256.png)
 
 # React-event-layer
-> Show a layer when a event il fired on a component
+> Show a layer when a event is fired on a component
 
 [![Build Status](https://travis-ci.org/GGGGino/react-event-layer.svg?branch=master)](https://travis-ci.org/GGGGino/react-event-layer)
 
@@ -19,51 +19,79 @@ import {
   Layer
 } from 'react-event-layer';
 
+class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-render() {
-  return (
-    <div className="index">
-      <img src={icon} alt="Yeoman Generator" />
-      <div className="notice">
-        <WrapperLayers width={300} height={250} enterMode="push" >
-          <Layer z={0} starterX={0} selector="h3" event="mouseenter">{baseLayer}</Layer>
-          <Layer z={1} starterX={300} event="dblclick">
-            <div className="backgroundedRedBox">
-              <h3>hoverable</h3>
-            </div>
-          </Layer>
-          <Layer z={2} starterX={300} event="click">
-            <div className="backgroundedGreenBox">
-              <h3>layer 1</h3>
-            </div>
-          </Layer>
-          <Layer z={3} starterX={300} event="click">
-            <div className="backgroundedGreenBox">
-              <h3>layer2</h3>
-            </div>
-          </Layer>
-          <Layer z={4} starterX={300} event="click">
-            <div className="try">
-              <h3>Anything</h3>
-            </div>
-          </Layer>
-        </WrapperLayers>
-        <br/>
+  render() {
+    const baseLayer = this.getBaseLayer(),
+      layer1 = this.getLayer1(),
+      layer2 = this.getLayer2(),
+      wrapperStyle = {
+        width: 300,
+        height: 250
+      },
+      starterStyle = {
+        left: 300,
+        top: -300
+      },
+      starterStyleHorizontal = {
+        left: 300,
+        top: 0
+      };
+
+    return (
+      <div className="index">
+        <img src={icon} alt="Yeoman Generator" />
+        <div className="notice">
+          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
+            <Layer z={51} starterStyle={starterStyle} event="dblclick">{layer1}</Layer>
+            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
+            <Layer z={32} starterStyle={starterStyle} event="click">{layer1}</Layer>
+          </WrapperLayers>
+          <br/>
+          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
+            <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
+            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
+            <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
+          </WrapperLayers>
+        </div>
       </div>
+    );
+  }
+
+  getBaseLayer() {
+    return <div className="backgroundedRedBox">
+      <h3>hoverable</h3>
     </div>
-  );
+  }
+
+  getLayer1() {
+    return <div className="backgroundedGreenBox">
+      <h2>layer 1</h2>
+    </div>
+  }
+
+  getLayer2() {
+    return <div className="backgroundedRedBox">
+      <h2>layer 2</h2>
+    </div>
+  }
 }
 ```
 
 ### Configuration
 
-> WrapperLayers
+### WrapperLayers
 
 * width={300}
 * height={250}
 * enterMode="push"
 
-> Layer
+### Layer
 
 * z={0}
 * starterX={0}
