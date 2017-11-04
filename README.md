@@ -1,10 +1,9 @@
-[![Logo](https://github.com/GGGGino/react-event-layer/blob/master/src/images/icon_256.png)
+![Logo](https://github.com/GGGGino/react-event-layer/blob/master/src/images/icon_256.png)
 
 # React-event-layer
 > Show a layer when a event is fired on a component
 
 [![Build Status](https://travis-ci.org/GGGGino/react-event-layer.svg?branch=master)](https://travis-ci.org/GGGGino/react-event-layer)
-[![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/react-event-layer)
 
 ### Installing
 
