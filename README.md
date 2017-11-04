@@ -1,4 +1,4 @@
-![Logo](https://github.com/GGGGino/react-event-layer/blob/master/src/images/icon_256.png)
+![Logo](https://raw.githubusercontent.com/GGGGino/react-event-layer/master/src/images/icon_256.png)
 
 # React-event-layer
 > Show a layer when a event is fired on a component
