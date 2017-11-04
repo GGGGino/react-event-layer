@@ -11,19 +11,37 @@ class AppComponent extends React.Component {
   render() {
     const baseLayer = this.getBaseLayer(),
       layer1 = this.getLayer1(),
-      layer2 = this.getLayer2();
+      layer2 = this.getLayer2(),
+      wrapperStyle = {
+        width: 300,
+        height: 250
+      },
+      starterStyle = {
+        left: 300,
+        top: -300
+      },
+      starterStyleHorizontal = {
+        left: 300,
+        top: 0
+      };
 
     return (
       <div className="index">
         <img src={icon} alt="Yeoman Generator" />
         <div className="notice">
-          <WrapperLayers width={300} height={250} enterMode="push" >
-            <Layer z={0} starterX={0} selector="h3" event="mouseenter">{baseLayer}</Layer>
-            <Layer z={1} starterX={300} event="dblclick">{layer1}</Layer>
-            <Layer z={2} starterX={300} event="click">{layer2}</Layer>
-            <Layer z={3} starterX={300} event="click">{layer1}</Layer>
+          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
+            <Layer z={51} starterStyle={starterStyle} event="dblclick">{layer1}</Layer>
+            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
+            <Layer z={32} starterStyle={starterStyle} event="click">{layer1}</Layer>
           </WrapperLayers>
           <br/>
+          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
+            <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
+            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
+            <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
+          </WrapperLayers>
         </div>
       </div>
     );

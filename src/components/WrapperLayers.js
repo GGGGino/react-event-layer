@@ -10,7 +10,7 @@ class WrapperLayers extends React.Component {
     super(props);
 
     this.state = {
-      x: 0,
+      left: 0,
       y: 0,
       activeLayer: 0
     };
@@ -30,13 +30,14 @@ class WrapperLayers extends React.Component {
   }
 
   render() {
+    const childrenOrdered = React.Children.toArray(this.props.children).sort((a, b) => a.props.z - b.props.z);
+
     return (
       <div
         className="wrapperLayers"
         style={this.getWrapperStyle()}
-        onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave} >
-        {this.props.children.map((item, i) => {
+        {childrenOrdered.map((item, i) => {
           const childProps = {
               ref: (input) => { this.layers[`layer${i}`] = input },
               ...item.props
@@ -45,17 +46,23 @@ class WrapperLayers extends React.Component {
               item,
               childProps
             ),
-            customStyle = this.controlEnterMode(i) ? {x: spring(0)} : {x: spring(item.props.starterX)};
+            activeStyle = {
+              top: spring(item.props.activeStyle.top),
+              left: spring(item.props.activeStyle.left)
+            },
+            itemStyle = {
+              top: spring(item.props.starterStyle.top),
+              left: spring(item.props.starterStyle.left)
+            },
+            customStyle = this.controlEnterMode(i) ? activeStyle : itemStyle;
 
           return (
-            <Motion key={item.props.z} defaultStyle={{x: item.props.starterX}} style={customStyle}>
-              {({x}) =>
-                // children is a callback which should accept the current value of
-                // `style`
-
+            <Motion key={item.props.z} defaultStyle={item.props.starterStyle} style={customStyle}>
+              {({left, top}) =>
+                // children is a callback which should accept the current value of style
                 <div className="wrapperLayer" style={{
-                  WebkitTransform: `translate3d(${x}px, 0, 0)`,
-                  transform: `translate3d(${x}px, 0, 0)`
+                  WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
+                  transform: `translate3d(${left}px, ${top}px, 0)`
                 }}>
                   <div className="demo0-block" >{clonedChild}</div>
                 </div>
@@ -79,6 +86,12 @@ class WrapperLayers extends React.Component {
       this.setState({activeLayer: nextLayer});
   }
 
+  /**
+   *
+   *
+   * @param row
+   * @returns {boolean}
+   */
   controlEnterMode(row) {
     if( this.props.enterMode === 'replace' ) {
       return row === this.state.activeLayer;
@@ -89,13 +102,21 @@ class WrapperLayers extends React.Component {
     }
   }
 
+  /**
+   * Do merge between the object passed and the obligatory styles
+   *
+   * @returns {{width: number}}
+   */
   getWrapperStyle() {
     return {
-      width: this.props.width,
-      height: this.props.height
+      ...this.props.style
     }
   }
 
+  /**
+   * Event.
+   * When i leave the wrapper, it return to the layer 0
+   */
   onMouseLeave() {
     this.setState({activeLayer: 0});
   }
@@ -107,15 +128,11 @@ WrapperLayers.defaultProps = {
 
 WrapperLayers.propTypes = {
   /**
-   * int larghezza container
+   *  The style of the wrapper
    */
-  width: PropTypes.number,
+  style: PropTypes.object,
   /**
-   * int altezza container
-   */
-  height: PropTypes.number,
-  /**
-   * string push|replace Se lo slider deve andare sopra push altrimenti se deve sostituire il layer replace
+   * string push|replace Tells if the next layer will go on the prev layer or it will replace the layer
    */
   enterMode: PropTypes.oneOf(['push', 'replace'])
 };

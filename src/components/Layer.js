@@ -19,11 +19,17 @@ class Layer extends React.Component {
 }
 
 Layer.defaultProps = {
+  activeStyle: {
+    top: 0,
+    left: 0
+  },
+  event: 'mouseenter'
 };
 
 Layer.propTypes = {
   z: PropTypes.number.isRequired,
-  starterX: PropTypes.number,
+  starterStyle: PropTypes.object,
+  activeStyle: PropTypes.object,
   selector: PropTypes.string,
   event: PropTypes.string
 };

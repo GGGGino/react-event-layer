@@ -1,7 +1,7 @@
 {
   "name": "react-event-layer",
-  "version": "3.0.0",
-  "description": "React event layer",
+  "version": "0.1.0",
+  "description": "A component that displays a list of layers based on the fired event",
   "main": "dist/assets/app.js",
   "scripts": {
     "clean": "rimraf dist/*",
