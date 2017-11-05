@@ -2,6 +2,8 @@ import React from 'react';
 import WrapperLayers from './WrapperLayers';
 import Layer from './Layer';
 import icon from '../images/icon.png';
+import nemo from '../images/nemo.png';
+import cloud from '../images/cloud.jpg';
 
 class AppComponent extends React.Component {
   constructor(props) {
@@ -9,6 +11,43 @@ class AppComponent extends React.Component {
   }
 
   render() {
+    return (
+      <div className="index">
+        <img src={icon} className="indexImg" alt="Yeoman Generator" />
+        <div className="notice">
+          {this.getFirstContainer()}
+          <br/>
+          {this.getSecondContainer()}
+        </div>
+      </div>
+    );
+  }
+
+  getFirstContainer() {
+    const baseLayer = this.getSandLayer(),
+      layer1 = this.getLayer1(),
+      nemoLayer = this.getNemoLayer(),
+      overNemoLayer = this.getH3Layer(),
+      wrapperStyle = {
+        width: 300,
+        height: 250
+      },
+      starterStyle = {
+        left: 300,
+        top: -300
+      };
+
+    return (
+      <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+        <Layer z={0} starterStyle={starterStyle} selector="h4" event="click">{baseLayer}</Layer>
+        <Layer z={10} starterStyle={starterStyle} selector="img" event="mouseenter">{nemoLayer}</Layer>
+        <Layer z={20} starterStyle={starterStyle} selector="h3" event="click">{overNemoLayer}</Layer>
+        <Layer z={32} starterStyle={starterStyle} event="click">{layer1}</Layer>
+      </WrapperLayers>
+    );
+  }
+
+  getSecondContainer() {
     const baseLayer = this.getBaseLayer(),
       layer1 = this.getLayer1(),
       layer2 = this.getLayer2(),
@@ -26,23 +65,40 @@ class AppComponent extends React.Component {
       };
 
     return (
-      <div className="index">
-        <img src={icon} alt="Yeoman Generator" />
-        <div className="notice">
-          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
-            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-            <Layer z={51} starterStyle={starterStyle} event="dblclick">{layer1}</Layer>
-            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
-            <Layer z={32} starterStyle={starterStyle} event="click">{layer1}</Layer>
-          </WrapperLayers>
-          <br/>
-          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
-            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-            <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
-            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
-            <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
-          </WrapperLayers>
-        </div>
+      <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+        <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
+        <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
+        <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
+        <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
+      </WrapperLayers>
+    );
+  }
+
+  getCloudLayer() {
+    return (<img src={cloud} />);
+  }
+
+  getSandLayer() {
+    return (
+      <div className="sandLayer">
+        <h4>CLICK ME</h4>
+      </div>
+    );
+  }
+
+  getNemoLayer() {
+    return (
+    <div className="nemoLayer">
+      <img src={nemo} width="40%" />
+      <h4>Hover on Nemo</h4>
+    </div>
+    );
+  }
+
+  getH3Layer() {
+    return (
+      <div className="overNemoLayer">
+        <h3>Another layer</h3>
       </div>
     );
   }
