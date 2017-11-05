@@ -13,7 +13,7 @@ npm install react-event-layer
 
 ### Visual Example
 
-![Visual Example](https://raw.githubusercontent.com/GGGGino/react-event-layer/master/src/images/icon_256.png)
+![Visual Example](https://raw.githubusercontent.com/GGGGino/react-event-layer/master/src/images/event-layer-push.gif)
 
 
 ### Getting Started
