@@ -1,6 +1,6 @@
 {
   "name": "react-event-layer",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A component that displays a list of layers based on the fired event",
   "main": "dist/assets/app.js",
   "scripts": {
