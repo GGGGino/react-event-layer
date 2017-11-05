@@ -1,7 +1,7 @@
-import 'core-js/fn/object/assign';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/Example';
+import WrapperLayers from './components/WrapperLayers';
+import Layer from './components/Layer';
 
-// Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('app'));
+export default {
+  WrapperLayers,
+  Layer
+};
