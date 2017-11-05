@@ -5,6 +5,10 @@
 
 [![Build Status](https://travis-ci.org/GGGGino/react-event-layer.svg?branch=master)](https://travis-ci.org/GGGGino/react-event-layer)
 
+### TODO
+
+* special entry/exit effect
+
 ### Installing
 
 ```
