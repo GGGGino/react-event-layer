@@ -1,32 +1,52 @@
+/* eslint-disable */
 'use strict';
 
-const path = require('path');
-const args = require('minimist')(process.argv.slice(2));
+var webpack = require('webpack');
+var path = require('path');
 
-// List of allowed environments
-const allowedEnvs = ['dev', 'dist', 'test'];
+var plugins = [
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  })
+];
 
-// Set the correct environment
-let env;
-if (args._.length > 0 && args._.indexOf('start') !== -1) {
-  env = 'test';
-} else if (args.env) {
-  env = args.env;
-} else {
-  env = 'dev';
-}
-process.env.REACT_WEBPACK_ENV = env;
+var DEV_MODE = process.env.NODE_ENV !== 'production';
 
-/**
- * Build the webpack configuration
- * @param  {String} wantedEnv The wanted environment
- * @return {Object} Webpack config
- */
-function buildConfig(wantedEnv) {
-  let isValid = wantedEnv && wantedEnv.length > 0 && allowedEnvs.indexOf(wantedEnv) !== -1;
-  let validEnv = isValid ? wantedEnv : 'dev';
-  let config = require(path.join(__dirname, 'cfg/' + validEnv));
-  return config;
+if (!DEV_MODE) {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
+  );
 }
 
-module.exports = buildConfig(env);
+module.exports = {
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      loader: 'babel',
+      exclude: /node_modules/
+    }]
+  },
+
+  entry: {
+    app: './examples/app.js',
+  },
+
+  watch: DEV_MODE,
+  devtool: DEV_MODE ? 'inline-source-map' : 'source-map',
+
+  output: {
+    path: path.join(__dirname, 'examples/js/'),
+    filename: 'bundle.min.js',
+    publicPath: '/js/'
+  },
+
+  plugins: plugins,
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  }
+};
