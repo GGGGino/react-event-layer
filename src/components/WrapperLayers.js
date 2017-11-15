@@ -1,5 +1,4 @@
-import 'normalize.css/normalize.css';
-import 'styles/App.css';
+import '../styles/App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';

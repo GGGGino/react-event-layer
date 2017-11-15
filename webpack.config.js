@@ -29,6 +29,10 @@ module.exports = {
       test: /\.jsx?$/,
       loader: 'babel',
       exclude: /node_modules/
+    },{
+      test: /\.css?$/,
+      loader: 'babel',
+      exclude: /node_modules/
     }]
   },
 
@@ -46,7 +50,7 @@ module.exports = {
   },
 
   plugins: plugins,
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+  t: {
+    extensions: ['', '.js', '.jsx', '.css']
   }
 };
