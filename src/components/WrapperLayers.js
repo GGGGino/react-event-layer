@@ -1,4 +1,3 @@
-import '../styles/App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -33,7 +32,6 @@ class WrapperLayers extends React.Component {
 
     return (
       <div
-        className="wrapperLayers"
         style={this.getWrapperStyle()}
         onMouseLeave={this.onMouseLeave} >
         {childrenOrdered.map((item, i) => {
@@ -59,7 +57,10 @@ class WrapperLayers extends React.Component {
             <Motion key={item.props.z} defaultStyle={item.props.starterStyle} style={customStyle}>
               {({left, top}) =>
                 // children is a callback which should accept the current value of style
-                <div className="wrapperLayer" style={{
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
                   WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
                   transform: `translate3d(${left}px, ${top}px, 0)`
                 }}>
@@ -108,6 +109,8 @@ class WrapperLayers extends React.Component {
    */
   getWrapperStyle() {
     return {
+      position: 'relative',
+      overflow: 'hidden',
       ...this.props.style
     }
   }

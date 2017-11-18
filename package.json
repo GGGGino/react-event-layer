@@ -2,7 +2,7 @@
   "name": "react-event-layer",
   "version": "0.4.1",
   "description": "A component that displays a list of layers based on the fired event",
-  "main": "lib/index.js",
+  "main": "lib/assets/app.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "demo:watch": "webpack-dev-server --inline --config webpack.config.js --content-base examples --port 8721",
@@ -68,7 +68,6 @@
     "react-motion": "^0.5.2"
   },
   "dependencies": {
-    "babel-plugin-react-css-modules": "^3.3.2",
     "react-motion": "^0.5.2"
   }
 }
