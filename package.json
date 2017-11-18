@@ -2,7 +2,7 @@
   "name": "react-event-layer",
   "version": "0.4.2",
   "description": "A component that displays a list of layers based on the fired event",
-  "main": "lib/assets/app.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "demo:watch": "webpack-dev-server --inline --config webpack.config.js --content-base examples --port 8721",
