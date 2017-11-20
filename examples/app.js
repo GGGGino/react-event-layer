@@ -13,7 +13,6 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div className="index">
-        <img src="https://vignette.wikia.nocookie.net/pixar/images/8/82/Nemo.png/revision/latest?cb=20110504131029" className="indexImg" alt="Yeoman Generator" />
         <div className="notice">
           {this.getFirstContainer()}
           <br/>
@@ -75,7 +74,7 @@ class AppComponent extends React.Component {
   }
 
   getCloudLayer() {
-    return (<img src={cloud} />);
+    return (<img src="https://www.w3schools.com/css/img_lights.jpg" />);
   }
 
   getSandLayer() {
@@ -89,7 +88,7 @@ class AppComponent extends React.Component {
   getNemoLayer() {
     return (
       <div className="nemoLayer">
-        <img src={nemo} width="40%" />
+        <img src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" width="40%" />
         <h4>Hover on Nemo</h4>
       </div>
     );
@@ -122,4 +121,4 @@ class AppComponent extends React.Component {
   }
 }
 
-ReactDOM.render(AppComponent, document.getElementById('app'));
+ReactDOM.render(<AppComponent />, document.getElementById('app'));
