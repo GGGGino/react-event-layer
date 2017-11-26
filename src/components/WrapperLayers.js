@@ -64,7 +64,7 @@ class WrapperLayers extends React.Component {
                   WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
                   transform: `translate3d(${left}px, ${top}px, 0)`
                 }}>
-                  <div className="demo0-block" >{clonedChild}</div>
+                  <div className="contLayer" >{clonedChild}</div>
                 </div>
               }
             </Motion>
@@ -93,12 +93,13 @@ class WrapperLayers extends React.Component {
    * @returns {boolean}
    */
   controlEnterMode(row) {
+    console.log(row);
     if( this.props.enterMode === 'replace' ) {
-      return row === this.state.activeLayer;
+      return row === 0 || row === this.state.activeLayer;
     }
 
     if( this.props.enterMode === 'push' ) {
-      return row <= this.state.activeLayer;
+      return row === 0 || row <= this.state.activeLayer;
     }
   }
 

@@ -14,8 +14,10 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <div className="notice">
+          <h2>Push style container</h2>
           {this.getFirstContainer()}
-          <br/>
+          <hr />
+          <h2>Replace style container</h2>
           {this.getSecondContainer()}
         </div>
       </div>
@@ -64,7 +66,7 @@ class AppComponent extends React.Component {
       };
 
     return (
-      <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
+      <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="replace" >
         <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
         <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
         <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
@@ -88,7 +90,7 @@ class AppComponent extends React.Component {
   getNemoLayer() {
     return (
       <div className="nemoLayer">
-        <img src="https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg" width="40%" />
+        <img src="https://vignette.wikia.nocookie.net/pixar/images/8/8d/Nemo_Promo_1.png/revision/latest?cb=20160710221424" width="40%" />
         <h4>Hover on Nemo</h4>
       </div>
     );
