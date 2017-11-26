@@ -1,25 +1,25 @@
-export default function fromTopLeft(width, height) {
+export function fromTopLeft(width, height) {
   return {
     bottom: height,
     right: width
   }
 }
 
-export default function fromTopRight(width, height) {
+export function fromTopRight(width, height) {
   return {
     bottom: height,
     left: width
   }
 }
 
-export default function fromBottomLeft(width, height) {
+export function fromBottomLeft(width, height) {
   return {
     top: height,
     right: width
   }
 }
 
-export default function fromBottomRight(width, height) {
+export function fromBottomRight(width, height) {
   return {
     top: height,
     left: width
