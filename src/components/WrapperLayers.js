@@ -55,18 +55,26 @@ class WrapperLayers extends React.Component {
 
           return (
             <Motion key={item.props.z} defaultStyle={item.props.starterStyle} style={customStyle}>
-              {({left, top}) =>
+              {({left, top}) => {
                 // children is a callback which should accept the current value of style
-                <div style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
-                  transform: `translate3d(${left}px, ${top}px, 0)`
-                }}>
+                const styleLayer = i === 0 ? {
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%'
+                  } : {
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    left: 0,
+                    WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
+                    transform: `translate3d(${left}px, ${top}px, 0)`
+                  };
+
+                return (<div style={styleLayer}>
                   <div className="contLayer" >{clonedChild}</div>
-                </div>
-              }
+                </div>);
+              }}
             </Motion>
           )
         })}
@@ -93,7 +101,6 @@ class WrapperLayers extends React.Component {
    * @returns {boolean}
    */
   controlEnterMode(row) {
-    console.log(row);
     if( this.props.enterMode === 'replace' ) {
       return row === 0 || row === this.state.activeLayer;
     }
@@ -112,6 +119,7 @@ class WrapperLayers extends React.Component {
     return {
       position: 'relative',
       overflow: 'hidden',
+      display: 'inline-block',
       ...this.props.style
     }
   }
