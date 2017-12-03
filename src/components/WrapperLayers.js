@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
+import { getAnimation, fromTop } from '../helpers/animations';
 
 class WrapperLayers extends React.Component {
   constructor(props) {
@@ -28,11 +29,12 @@ class WrapperLayers extends React.Component {
   }
 
   render() {
-    const childrenOrdered = React.Children.toArray(this.props.children).sort((a, b) => a.props.z - b.props.z);
+    const childrenOrdered = React.Children.toArray(this.props.children).sort((a, b) => a.props.z - b.props.z),
+      wrapperStyle = this.getWrapperStyle();
 
     return (
       <div
-        style={this.getWrapperStyle()}
+        style={wrapperStyle}
         onMouseLeave={this.onMouseLeave} >
         {childrenOrdered.map((item, i) => {
           const childProps = {
@@ -43,33 +45,17 @@ class WrapperLayers extends React.Component {
               item,
               childProps
             ),
-            activeStyle = {
-              top: spring(item.props.activeStyle.top),
-              left: spring(item.props.activeStyle.left)
-            },
-            itemStyle = {
-              top: spring(item.props.starterStyle.top),
-              left: spring(item.props.starterStyle.left)
-            },
-            customStyle = this.controlEnterMode(i) ? activeStyle : itemStyle;
+            animRequested = item.props.animation,
+            {defaultStyle, activeStyle, nonActiveStyle, anim} = getAnimation(animRequested),
+            customStyle = this.controlEnterMode(i) ? activeStyle : nonActiveStyle;
 
           return (
-            <Motion key={item.props.z} defaultStyle={item.props.starterStyle} style={customStyle}>
-              {({left, top}) => {
+            <Motion key={item.props.z} defaultStyle={defaultStyle} style={customStyle}>
+              {(currStyle) => {
                 // children is a callback which should accept the current value of style
                 const styleLayer = i === 0 ? {
-                    position: 'relative',
-                    width: '100%',
-                    height: '100%'
-                  } : {
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    top: 0,
-                    left: 0,
-                    WebkitTransform: `translate3d(${left}px, ${top}px, 0)`,
-                    transform: `translate3d(${left}px, ${top}px, 0)`
-                  };
+                    position: 'relative'
+                  } : anim(currStyle);
 
                 return (<div style={styleLayer}>
                   <div className="contLayer" >{clonedChild}</div>
@@ -82,10 +68,20 @@ class WrapperLayers extends React.Component {
     );
   }
 
+  /**
+   * Number of the layer
+   *
+   * @returns {Number}
+   */
   countLayer() {
     return Object.keys(this.layers).length;
   }
 
+  /**
+   * Event. Event attached to the eventListener and change the state.
+   *
+   * @param ref
+   */
   eventOnLayer(ref) {
     const intLayer = parseInt(ref.replace('layer', '')),
       nextLayer = intLayer + 1;

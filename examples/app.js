@@ -30,7 +30,6 @@ class AppComponent extends React.Component {
           <hr />
           <h2>Replace style container</h2>
           <p>The new layer replace the old one.</p>
-          {this.getSecondContainer()}
           <pre >
             &lt;WrapperLayers enterMode="replace" /&gt;
           </pre>
@@ -52,9 +51,9 @@ class AppComponent extends React.Component {
     return (
       <WrapperLayers enterMode="push" >
         <Layer z={0} starterStyle={starterStyle} selector="h4" event="click">{baseLayer}</Layer>
-        <Layer z={10} starterStyle={starterStyle} selector="img" event="mouseenter">{nemoLayer}</Layer>
-        <Layer z={20} starterStyle={starterStyle} selector="h3" event="click">{overNemoLayer}</Layer>
-        <Layer z={32} starterStyle={starterStyle}>{layer1}</Layer>
+        <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">{nemoLayer}</Layer>
+        <Layer z={20} animation={'fromRight'} selector="h3" event="click">{overNemoLayer}</Layer>
+        <Layer z={32} animation={'fromBottom'} starterStyle={starterStyle}>{layer1}</Layer>
       </WrapperLayers>
     );
   }
@@ -80,9 +79,9 @@ class AppComponent extends React.Component {
     return (
       <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="replace">
         <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-        <Layer z={51} starterStyle={starterStyleHorizontal}>{nemoLayer}</Layer>
-        <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
-        <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
+        <Layer z={51} animation={'fromTop'} starterStyle={starterStyleHorizontal}>{nemoLayer}</Layer>
+        <Layer z={50} animation={'fromLeft'} starterStyle={starterStyle} event="click">{layer2}</Layer>
+        <Layer z={32} animation={'fromTop'} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
       </WrapperLayers>
     );
   }
