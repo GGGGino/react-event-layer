@@ -8,7 +8,7 @@ class Layer extends React.Component {
 
   render() {
     return (
-      <div style={this.props.style} >
+      <div className="layer" style={this.props.style} >
         {this.props.children}
       </div>
     );

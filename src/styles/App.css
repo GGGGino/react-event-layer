@@ -1,103 +1,14 @@
 /*Component*/
-.wrapperLayers{
+.reactEventLayer{
+
+}
+.reactEventLayer .wrapperLayers{
   position: relative;
   overflow: hidden;
 }
 
-.wrapperLayer{
+.reactEventLayer .wrapperLayer{
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-.layer{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-/* Example styles */
-body {
-  color: #fff;
-  background: #222;
-}
-
-.index img.indexImg {
-  margin: 40px auto;
-  border-radius: 4px;
-  display: block;
-}
-
-.index img {
-  max-width: 100%;
-  display: block;
-}
-
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  text-align: center;
-  background: #666;
-}
-
-h2, h3{
-  margin: 0;
-  padding: 15px;
-}
-
-.wrapperLayers{
-  margin: auto;
-}
-
-.sandLayer{
-  background: url(../images/sand.jpg) no-repeat center;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.sandLayer h4{
-  margin: 0;
-  padding-top: 20px;
-}
-
-.nemoLayer{
-  width: 100%;
-  height: 100%;
-}
-
-.nemoLayer img{
-  margin-top: 70px;
-}
-
-.overNemoLayer{
-  background: rgba(0, 0, 0, .5);
-}
-
-.overNemoLayer h3{
-  color: #FFFFFF;
-  margin-top: 70px;
-}
-
-/*Not used*/
-
-.layer{
-  position: absolute;
-}
-
-.backgroundedRedBox{
-  background: red;
-  width: 300px;
-  height: 200px;
-  display: inline-block;
-}
-
-.backgroundedGreenBox{
-  background: green;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
 }

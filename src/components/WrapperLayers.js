@@ -35,7 +35,8 @@ class WrapperLayers extends React.Component {
     return (
       <div
         style={wrapperStyle}
-        onMouseLeave={this.onMouseLeave} >
+        onMouseLeave={this.onMouseLeave}
+        className="reactEventLayer" >
         {childrenOrdered.map((item, i) => {
           const childProps = {
               ref: (input) => { this.layers[`layer${i}`] = input },
@@ -57,8 +58,8 @@ class WrapperLayers extends React.Component {
                     position: 'relative'
                   } : anim(currStyle);
 
-                return (<div style={styleLayer}>
-                  <div className="contLayer" >{clonedChild}</div>
+                return (<div className="wrapperLayer" style={styleLayer}>
+                  {clonedChild}
                 </div>);
               }}
             </Motion>
