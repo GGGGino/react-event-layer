@@ -11,8 +11,8 @@ export function fromTop() {
     nonActiveStyle: {
       top: spring(-100)
     },
-    anim: function(currStyle) {
-      const {top} = currStyle;
+    anim(currStyle) {
+      const { top } = currStyle;
 
       return {
         position: 'absolute',
@@ -21,9 +21,9 @@ export function fromTop() {
         top: 0,
         WebkitTransform: `translate3d(0px, ${top}%, 0)`,
         transform: `translate3d(0px, ${top}%, 0)`
-      }
+      };
     }
-  }
+  };
 }
 
 export function fromRight() {
@@ -40,8 +40,8 @@ export function fromRight() {
       top: 0,
       right: spring(-100),
     },
-    anim: function(currStyle) {
-      const {right} = currStyle;
+    anim(currStyle) {
+      const { right } = currStyle;
 
       return {
         position: 'absolute',
@@ -50,9 +50,9 @@ export function fromRight() {
         top: 0,
         WebkitTransform: `translate3d(${right}%, 0px, 0)`,
         transform: `translate3d(${right}%, 0px, 0)`
-      }
+      };
     }
-  }
+  };
 }
 
 export function fromBottom() {
@@ -66,8 +66,8 @@ export function fromBottom() {
     nonActiveStyle: {
       top: spring(100),
     },
-    anim: function(currStyle) {
-      const {top} = currStyle;
+    anim(currStyle) {
+      const { top } = currStyle;
 
       return {
         position: 'absolute',
@@ -76,9 +76,9 @@ export function fromBottom() {
         height: '100%',
         WebkitTransform: `translate3d(0px, ${top}%, 0)`,
         transform: `translate3d(0px, ${top}%, 0)`
-      }
+      };
     }
-  }
+  };
 }
 
 const types = {
@@ -92,8 +92,9 @@ export function getAnimation(type) {
 
   reqFunc = types[type];
 
-  if( !reqFunc )
+  if (!reqFunc) {
     reqFunc = fromTop;
+  }
 
   return reqFunc();
 }

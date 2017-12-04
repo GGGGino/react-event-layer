@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
-import { getAnimation, fromTop } from '../helpers/animations';
+import { Motion } from 'react-motion';
+import { getAnimation } from '../helpers/animations';
 
 class WrapperLayers extends React.Component {
   constructor(props) {
@@ -20,43 +20,44 @@ class WrapperLayers extends React.Component {
   }
 
   componentDidMount() {
-    for( let key in this.layers ){
-      let domEl = ReactDOM.findDOMNode(this.layers[key]),
-        domQueried = this.layers[key].props.selector ? domEl.querySelector(this.layers[key].props.selector) : domEl;
+    for (let key in this.layers) {
+      const domEl = ReactDOM.findDOMNode(this.layers[key]);
+      const domQueried = this.layers[key].props.selector ? domEl.querySelector(this.layers[key].props.selector) : domEl;
 
       domQueried.addEventListener(this.layers[key].props.event, this.eventOnLayer.bind(this, key, this.layers[key]));
     }
   }
 
   render() {
-    const childrenOrdered = React.Children.toArray(this.props.children).sort((a, b) => a.props.z - b.props.z),
-      wrapperStyle = this.getWrapperStyle();
+    const childrenOrdered = React.Children.toArray(this.props.children).sort((a, b) => a.props.z - b.props.z);
+    const wrapperStyle = this.getWrapperStyle();
 
     return (
       <div
         style={wrapperStyle}
         onMouseLeave={this.onMouseLeave}
-        className="reactEventLayer" >
+        className="reactEventLayer"
+      >
         {childrenOrdered.map((item, i) => {
           const childProps = {
-              ref: (input) => { this.layers[`layer${i}`] = input },
-              ...item.props
-            },
-            clonedChild = React.cloneElement(
-              item,
-              childProps
-            ),
-            animRequested = item.props.animation,
-            {defaultStyle, activeStyle, nonActiveStyle, anim} = getAnimation(animRequested),
-            customStyle = this.controlEnterMode(i) ? activeStyle : nonActiveStyle;
+            ref: (input) => { this.layers[`layer${i}`] = input },
+            ...item.props
+          };
+          const clonedChild = React.cloneElement(
+            item,
+            childProps
+          );
+          const animRequested = item.props.animation;
+          const { defaultStyle, activeStyle, nonActiveStyle, anim } = getAnimation(animRequested);
+          const customStyle = this.controlEnterMode(i) ? activeStyle : nonActiveStyle;
 
           return (
             <Motion key={item.props.z} defaultStyle={defaultStyle} style={customStyle}>
               {(currStyle) => {
                 // children is a callback which should accept the current value of style
                 const styleLayer = i === 0 ? {
-                    position: 'relative'
-                  } : anim(currStyle);
+                  position: 'relative'
+                } : anim(currStyle);
 
                 return (<div className="wrapperLayer" style={styleLayer}>
                   {clonedChild}
@@ -98,11 +99,11 @@ class WrapperLayers extends React.Component {
    * @returns {boolean}
    */
   controlEnterMode(row) {
-    if( this.props.enterMode === 'replace' ) {
+    if (this.props.enterMode === 'replace') {
       return row === 0 || row === this.state.activeLayer;
     }
 
-    if( this.props.enterMode === 'push' ) {
+    if (this.props.enterMode === 'push') {
       return row === 0 || row <= this.state.activeLayer;
     }
   }
@@ -118,7 +119,7 @@ class WrapperLayers extends React.Component {
       overflow: 'hidden',
       display: 'inline-block',
       ...this.props.style
-    }
+    };
   }
 
   /**
@@ -126,7 +127,7 @@ class WrapperLayers extends React.Component {
    * When i leave the wrapper, it return to the layer 0
    */
   onMouseLeave() {
-    this.setState({activeLayer: 0});
+    this.setState({ activeLayer: 0 });
   }
 }
 
