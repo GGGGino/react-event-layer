@@ -30,6 +30,7 @@ class AppComponent extends React.Component {
           <hr />
           <h2>Replace style container</h2>
           <p>The new layer replace the old one.</p>
+          {this.getSecondContainer()}
           <pre >
             &lt;WrapperLayers enterMode="replace" /&gt;
           </pre>
@@ -42,18 +43,14 @@ class AppComponent extends React.Component {
     const baseLayer = this.getSandLayer(),
       layer1 = this.getLayer1(),
       nemoLayer = this.getNemoLayer(),
-      overNemoLayer = this.getH3Layer(),
-      starterStyle = {
-        left: 300,
-        top: -300
-      };
+      overNemoLayer = this.getH3Layer();
 
     return (
       <WrapperLayers enterMode="push" >
-        <Layer z={0} starterStyle={starterStyle} selector="h4" event="click">{baseLayer}</Layer>
+        <Layer z={0} selector="h4" event="click">{baseLayer}</Layer>
         <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">{nemoLayer}</Layer>
         <Layer z={20} animation={'fromRight'} selector="h3" event="click">{overNemoLayer}</Layer>
-        <Layer z={32} animation={'fromBottom'} starterStyle={starterStyle}>{layer1}</Layer>
+        <Layer z={32} animation={'fromBottom'} >{layer1}</Layer>
       </WrapperLayers>
     );
   }
@@ -66,22 +63,14 @@ class AppComponent extends React.Component {
       wrapperStyle = {
         width: 300,
         height: 250
-      },
-      starterStyle = {
-        left: 300,
-        top: -300
-      },
-      starterStyleHorizontal = {
-        left: 300,
-        top: 0
       };
 
     return (
       <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="replace">
-        <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-        <Layer z={51} animation={'fromTop'} starterStyle={starterStyleHorizontal}>{nemoLayer}</Layer>
-        <Layer z={50} animation={'fromLeft'} starterStyle={starterStyle} event="click">{layer2}</Layer>
-        <Layer z={32} animation={'fromTop'} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
+        <Layer z={0} selector="h3" event="mouseenter">{baseLayer}</Layer>
+        <Layer z={51} animation={'fromTop'}>{nemoLayer}</Layer>
+        <Layer z={50} animation={'fromLeft'} event="click">{layer2}</Layer>
+        <Layer z={32} animation={'fromTop'} event="click">{layer1}</Layer>
       </WrapperLayers>
     );
   }

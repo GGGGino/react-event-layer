@@ -38,40 +38,23 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    const baseLayer = this.getBaseLayer(),
-      layer1 = this.getLayer1(),
-      layer2 = this.getLayer2(),
-      wrapperStyle = {
-        width: 300,
-        height: 250
-      },
-      starterStyle = {
-        left: 300,
-        top: -300
-      },
-      starterStyleHorizontal = {
-        left: 300,
-        top: 0
-      };
+    const baseLayer = this.getBaseLayer();
 
     return (
-      <div className="index">
-        <img src={icon} alt="Yeoman Generator" />
-        <div className="notice">
-          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
-            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-            <Layer z={51} starterStyle={starterStyle} event="dblclick">{layer1}</Layer>
-            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
-            <Layer z={32} starterStyle={starterStyle} event="click">{layer1}</Layer>
-          </WrapperLayers>
-          <br/>
-          <WrapperLayers style={wrapperStyle} width={300} height={250} enterMode="push" >
-            <Layer z={0} starterStyle={starterStyle} selector="h3" event="mouseenter">{baseLayer}</Layer>
-            <Layer z={51} starterStyle={starterStyleHorizontal} event="dblclick">{layer1}</Layer>
-            <Layer z={50} starterStyle={starterStyle} event="click">{layer2}</Layer>
-            <Layer z={32} starterStyle={starterStyleHorizontal} event="click">{layer1}</Layer>
-          </WrapperLayers>
-        </div>
+      <div>
+        <WrapperLayers enterMode="push" >
+            <Layer z={0} selector="h4" event="click">{baseLayer}</Layer>
+            <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">
+                <div className="nemoLayer">
+                    <h4>Hover on Nemo</h4>
+                </div>
+            </Layer>
+            <Layer z={20} animation={'fromRight'} selector="h3" event="click">
+                <div className="overNemoLayer">
+                    <h3>Another layer click me</h3>
+                </div>
+            </Layer>
+      </WrapperLayers>
       </div>
     );
   }
@@ -79,18 +62,6 @@ class AppComponent extends React.Component {
   getBaseLayer() {
     return <div className="backgroundedRedBox">
       <h3>hoverable</h3>
-    </div>
-  }
-
-  getLayer1() {
-    return <div className="backgroundedGreenBox">
-      <h2>layer 1</h2>
-    </div>
-  }
-
-  getLayer2() {
-    return <div className="backgroundedRedBox">
-      <h2>layer 2</h2>
     </div>
   }
 }
