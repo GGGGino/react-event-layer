@@ -25,8 +25,6 @@ Layer.defaultProps = {
 
 Layer.propTypes = {
   z: PropTypes.number.isRequired,
-  starterStyle: PropTypes.object,
-  activeStyle: PropTypes.object,
   selector: PropTypes.string,
   event: PropTypes.string
 };

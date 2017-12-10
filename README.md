@@ -43,17 +43,18 @@ class AppComponent extends React.Component {
     return (
       <div>
         <WrapperLayers enterMode="push" >
-            <Layer z={0} selector="h4" event="click">{baseLayer}</Layer>
-            <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">
-                <div className="nemoLayer">
-                    <h4>Hover on Nemo</h4>
-                </div>
-            </Layer>
-            <Layer z={20} animation={'fromRight'} selector="h3" event="click">
-                <div className="overNemoLayer">
-                    <h3>Another layer click me</h3>
-                </div>
-            </Layer>
+          <Layer z={0} selector="h3" event="click">{baseLayer}</Layer>
+          <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">
+            <div className="nemoLayer">
+              <h4>Hover on Nemo</h4>
+              <img src="..." />
+            </div>
+          </Layer>
+          <Layer z={20} animation={'fromRight'} selector="h3" event="click">
+            <div className="overNemoLayer">
+              <h3>Another layer click me</h3>
+            </div>
+          </Layer>
       </WrapperLayers>
       </div>
     );
@@ -71,20 +72,19 @@ class AppComponent extends React.Component {
 
 ### WrapperLayers
 
-* width={300}
-* height={250}
 * enterMode="push"
 
 ### Layer
 
-* z={0}
-* starterX={0}
-* selector="h3"
-* event="mouseenter"
+* z={0} the order of the layer
+* selector="h3" the query selector to attach the event
+* event="mouseenter" the js event that fires the next layer
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+```
+npm run test
+```
 
 ### Break down into end to end tests
 
