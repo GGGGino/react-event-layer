@@ -38,12 +38,14 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    const baseLayer = this.getBaseLayer();
-
     return (
       <div>
         <WrapperLayers enterMode="push" >
-          <Layer z={0} selector="h3" event="click">{baseLayer}</Layer>
+          <Layer z={0} selector="h3" event="click">
+            <div className="backgroundedRedBox">
+              <h3>hoverable</h3>
+            </div>
+          </Layer>
           <Layer z={10} animation={'fromTop'} selector="img" event="mouseenter">
             <div className="nemoLayer">
               <h4>Hover on Nemo</h4>
@@ -59,52 +61,30 @@ class AppComponent extends React.Component {
       </div>
     );
   }
-
-  getBaseLayer() {
-    return <div className="backgroundedRedBox">
-      <h3>hoverable</h3>
-    </div>
-  }
 }
 ```
 
-### Configuration
+## Configuration
 
-### WrapperLayers
+### WrapperLayers props
 
-* enterMode="push"
+| Name | Type | Default value | Description |
+|:----:|:----:|:-------------:|:----------------:|
+| enterMode | String | push | This props can have the values push or replace |
 
-### Layer
+### Layer props
 
-* z={0} the order of the layer
-* selector="h3" the query selector to attach the event
-* event="mouseenter" the js event that fires the next layer
+| Name | Type | Default value | Description |
+|:----:|:----:|:-------------:|:----------------:|
+| z | Integer | 0 | Not required. If omitted this number is incremental. |
+| selector | String | "" | Not required. If omitted the selector will be the whole element. Example "div > img" or ".divClass" |
+| event | String | "" | Not required. This props suggest what event fires the animation to the next layer. If omitted, no event will be launched |
 
 ## Running the tests
 
 ```
 npm run test
 ```
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -117,7 +97,7 @@ Please read [CONTRIBUTING.md](https://github.com/GGGGino/react-event-layer/blob/
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/GGGGino/react-event-layer/tags).
 
 ## Authors
 
@@ -128,9 +108,3 @@ See also the list of [contributors](https://github.com/GGGGino/react-event-layer
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
