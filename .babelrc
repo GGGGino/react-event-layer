@@ -1,8 +1,7 @@
 {
   "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
-  "plugins": ["transform-decorators-legacy"]
+    "@babel/env",
+    "@babel/react",
+    "@babel/preset-typescript"
+  ]
 }
