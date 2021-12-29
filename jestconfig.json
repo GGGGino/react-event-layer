@@ -3,8 +3,9 @@
   "transform": {
     "^.+\\.(t|j)sx?$": "ts-jest"
   },
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testEnvironment": "jsdom",
   "coverageThreshold": {
     "global": {
       "branches": 65,
